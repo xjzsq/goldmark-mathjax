@@ -37,10 +37,11 @@ func (s *inlineMathParser) Parse(parent ast.Node, block text.Reader, pc parser.C
 		}
 		for i := 0; i < len(line); i++ {
 			c := line[i]
+			d := line[i]
 			if i+1 < len(line) {
-				d := line[i+1]
+				d = line[i+1]
 			} else {
-				d := '\n'
+				d = '\n'
 			}
 			if c == '$' && d != '.' {
 				oldi := i
