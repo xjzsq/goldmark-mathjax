@@ -2,7 +2,7 @@ goldmark-mathjax
 =========================
 
 goldmark-mathjax is an extension for the [goldmark](http://github.com/yuin/goldmark) 
-that adds both block math and inline math support
+that adds both block math and inline math support, this fork makes a modify to adjust to [Hugo](https://github.com/xjzsq/hugo)
 
 It translate inline math equation quoted by `$` and display math block quoted by `$$` into MathJax compatible format.
 hyphen `_` won't break LaTeX render within a math element any more.
@@ -30,7 +30,7 @@ Installation
 --------------------
 
 ```
-go get github.com/litao91/goldmark-mathjax
+go get github.com/xjzsq/goldmark-mathjax
 ```
 
 Usage
