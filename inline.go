@@ -38,12 +38,18 @@ func (s *inlineMathParser) Parse(parent ast.Node, block text.Reader, pc parser.C
 		for i := 0; i < len(line); i++ {
 			c := line[i]
 			d := line[i]
+			e := line[i]
 			if i+1 < len(line) {
 				d = line[i+1]
 			} else {
 				d = '\n'
 			}
-			if c == '$' && d != '.' {
+			if i+2 < len(line) {
+				e = line[i+2]
+			} else {
+				e = '\n'
+			}
+			if c == '$' && !(d == '.' && ((e >= 'a' && e <= 'z') || (e >= 'A' && e <= 'Z'))) {
 				oldi := i
 				for ; i < len(line) && line[i] == '$'; i++ {
 				}
