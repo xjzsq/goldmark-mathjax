@@ -29,6 +29,9 @@ func (s *inlineMathParser) Parse(parent ast.Node, block text.Reader, pc parser.C
 	block.Advance(opener)
 	l, pos := block.Position()
 	node := NewInlineMath()
+	if (1 >= len(line) || line[1] == '.') && (2 >= len(line) || (line[2] >= 'a' && line[2] <= 'z') || (line[2] >= 'A' && line[2] <= 'Z')) {
+		return node
+	}
 	for {
 		line, segment := block.PeekLine()
 		if line == nil {
@@ -37,24 +40,12 @@ func (s *inlineMathParser) Parse(parent ast.Node, block text.Reader, pc parser.C
 		}
 		for i := 0; i < len(line); i++ {
 			c := line[i]
-			d := line[i]
-			e := line[i]
-			if i+1 < len(line) {
-				d = line[i+1]
-			} else {
-				d = '\n'
-			}
-			if i+2 < len(line) {
-				e = line[i+2]
-			} else {
-				e = '\n'
-			}
-			if c == '$' && !(d == '.' && ((e >= 'a' && e <= 'z') || (e >= 'A' && e <= 'Z'))) {
+			if c == '$' {
 				oldi := i
 				for ; i < len(line) && line[i] == '$'; i++ {
 				}
 				closure := i - oldi
-				if closure == opener && (i+1 >= len(line) || line[i+1] != '$') {
+				if closure == opener { // Unaccountable Code: && (i+1 >= len(line) || line[i+1] != '$')
 					segment := segment.WithStop(segment.Start + i - closure)
 					if !segment.IsEmpty() {
 						node.AppendChild(node, ast.NewRawTextSegment(segment))

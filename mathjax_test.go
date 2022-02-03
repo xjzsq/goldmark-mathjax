@@ -36,6 +36,11 @@ func TestMathJax(t *testing.T) {
 			out: `<p><span class="math inline">\(1+2\)</span></p>`,
 		},
 		{
+			d:   "math inline & hugo variable in one line",
+			in:  "{$.Title} $3+2$,$2+5${$.Title} ",
+			out: `<p>{$.Title} <span class="math inline">\(3+2\)</span>,<span class="math inline">\(2+5\)</span>{$.Title}</p>`,
+		},
+		{
 			d:  "math display",
 			in: "$$\n1+2\n$$",
 			out: `<p><span class="math display">\[1+2
