@@ -2,7 +2,7 @@ goldmark-mathjax
 =========================
 
 goldmark-mathjax is an extension for the [goldmark](http://github.com/yuin/goldmark) 
-that adds both block math and inline math support, this fork makes a modify to adjust to [Hugo](https://github.com/xjzsq/hugo)
+that adds both block math and inline math support, and this fork makes some modifications to adjust to [Hugo](https://github.com/xjzsq/hugo)
 
 It translate inline math equation quoted by `$` and display math block quoted by `$$` into MathJax compatible format.
 hyphen `_` won't break LaTeX render within a math element any more.
@@ -43,7 +43,7 @@ import (
 	"bytes"
 	"fmt"
 
-	mathjax "github.com/litao91/goldmark-mathjax"
+	mathjax "github.com/xjzsq/goldmark-mathjax"
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/parser"
 	"github.com/yuin/goldmark/renderer/html"
@@ -71,7 +71,7 @@ $$
 $$
 
 
-Inline math $\frac{1}{2}$
+Inline math $\frac{1}{2}$ 
 `)
 	if err := md.Convert(mdContent, &html); err != nil {
 		fmt.Println(err)
